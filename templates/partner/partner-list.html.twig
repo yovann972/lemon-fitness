@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container my-3">
+        <div class="card-group">
+            {% for partner in partners %}
+                <div class="row flex-wrap">
+                    <div class="card mb-3 m-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img 
+                                    src="{{asset('uploads/logo/')}}{{ partner.logo }}" 
+                                    class="img-fluid rounded-start p-4"
+                                    alt="profile-pic"
+                                >
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ partner.name }}</h5>
+                                    <p class="card-text">{{ partner.ShortDescription }}
+                                    ...<a href="{{ path("app_partner", {id: partner.id}) }}">voir plus</a>
+                                    </p>
+                                    <p class="card-text">url: 
+                                        <a href="">{{ partner.url }}</a>
+                                    </p>
+                                    <p class="card-text">
+                                    <small class="">
+                                        <div class="form-check form-switch" id="js-active">
+                                            <label class="form-check-label" for="activePartner">Actif</label>
+                                            {% if partner.active == 1 %}
+                                                <input 
+                                                    class="form-check-input" 
+                                                    type="checkbox"
+                                                    checked
+                                                    value= {{ partner.id }}
+                                                    id="activePartner">
+                                            {% else %}                                        
+                                            <input 
+                                                class="form-check-input" 
+                                                type="checkbox"
+                                                value= {{ partner.id }}
+                                                id="activePartner">
+                                            {% endif %}
+                                        </div>
+                                    </small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>            
+                
+                
+                </div>
+            {% endfor %}
+        </div>
+                    {% include "partials/_paginator.html.twig" %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{asset('assets/js/activePartner.js')}}">
+    </script>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PartnerController!{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <div class="container-fluid">
+        <div class="row my-2">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success mt-3">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            <div class="col-6 col-md-1">
+                <img 
+                class="rounded float-start" 
+                style="width:100px;" 
+                src="{{asset('uploads/logo/')}}{{ partner.logo }}" 
+                alt="profile-pic"
+                >
+            </div>
+            <div class="col-6 col-sm-11">
+                <h2>{{ partner.name }}</h2>
+                <a class="" href="{{ path("app_reset_password") }}">Changer mot de passe</a>
+            </div>
+            <div class="row">
+            <p>{{ partner.longDescription }}</p>
+            </div>
+            <div class="row">
+            {% for structure in partner.structures %}                  
+                    <div class="col-sm-6 mt-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{structure.address}}</h5>
+                                <p>{{ structure.city}}</p>
+                                    {% for perm in structure.perms %}
+                                    <div id="js-perms">
+
+                                        {% if perm.sellDrinks == 1 %}
+                                            <input id="sellDrinks" checked class="form-check-input me-1" type="checkbox" value="{{ perm.installId }}">
+                                            Vente de boisson
+                                        {% else %}
+                                            <input id="sellDrinks" class="form-check-input me-1" type="checkbox" value="{{ perm.installId }}">
+                                            Vente de boisson
+                                        {% endif %}   
+
+                                        {% if perm.membersStatistiques == 1 %}
+                                            <input id="memberStat" checked class="form-check-input me-1" type="checkbox" value="{{ perm.installId }}">
+                                            Statistiques des membres                                            
+                                        {% else %}
+                                            <input id="memberStat" class="form-check-input me-1" type="checkbox" value="{{ perm.installId }}">
+                                            Statistiques des membres
+                                        {% endif %}
+
+                                        {% if perm.paymentSchedules == 1 %}
+                                                <input id="paymentSchedule" checked class="form-check-input me-1" type="checkbox" value="{{ perm.installId }}">
+                                                Calendrier de paiement                                           
+                                        {% else %}
+                                                <input id="paymentSchedule" class="form-check-input me-1" type="checkbox" value="{{ perm.installId }}">
+                                                Calendrier de paiement                                           
+                                        {% endif %}
+
+                                        {% if perm.employeePlanning == 1 %}
+                                                <input id="employeePlanning" checked class="form-check-input me-1" type="checkbox" value="{{ perm.installId }}">
+                                                Planning Employés                                                  
+                                        {% else %}
+                                                <input id="employeePlanning" class="form-check-input me-1" type="checkbox" value="{{ perm.installId }}">
+                                                Planning Employés                                               
+                                        {% endif %}
+                                    </div>
+                                    {% endfor %}
+                            </div>
+                        </div>
+                    </div>              
+            {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{asset("assets/js/managePerms.js")}}">
+    </script>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StructuresController!{% endblock %}
+
+{% block body %}
+<section class="container">
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success mt-3">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="row">
+        <h3>{{structure.address}}</h3>
+        <a href="{{ path('app_reset_password') }}">Changer mot de passe</a>
+        <div class="row">
+            <p>{{ structure.zipCode }} {{ structure.city }}</p>
+        </div>
+                                            {% for perm in structure.perms %}
+                                    <div id="js-perms">
+
+                                        {% if perm.sellDrinks == 1 %}
+                                            <input id="sellDrinks" disabled checked class="form-check-input me-1" type="checkbox" value="{{ perm.installId }}">
+                                            Vente de boisson
+                                        {% else %}
+                                            <input id="sellDrinks" disabled class="form-check-input me-1" type="checkbox" value="{{ perm.installId }}">
+                                            Vente de boisson
+                                        {% endif %}   
+
+                                        {% if perm.membersStatistiques == 1 %}
+                                            <input id="memberStat" disabled checked class="form-check-input me-1" type="checkbox" value="{{ perm.installId }}">
+                                            Statistiques des membres                                            
+                                        {% else %}
+                                            <input id="memberStat" disabled class="form-check-input me-1" type="checkbox" value="{{ perm.installId }}">
+                                            Statistiques des membres
+                                        {% endif %}
+
+                                        {% if perm.paymentSchedules == 1 %}
+                                                <input id="paymentSchedule" disabled checked class="form-check-input me-1" type="checkbox" value="{{ perm.installId }}">
+                                                Calendrier de paiement                                           
+                                        {% else %}
+                                                <input id="paymentSchedule" disabled class="form-check-input me-1" type="checkbox" value="{{ perm.installId }}">
+                                                Calendrier de paiement                                           
+                                        {% endif %}
+
+                                        {% if perm.employeePlanning == 1 %}
+                                                <input id="employeePlanning" disabled checked class="form-check-input me-1" type="checkbox" value="{{ perm.installId }}">
+                                                Planning Employés                                                  
+                                        {% else %}
+                                                <input id="employeePlanning" disabled class="form-check-input me-1" type="checkbox" value="{{ perm.installId }}">
+                                                Planning Employés                                               
+                                        {% endif %}
+                                    </div>
+                                    {% endfor %}
+
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col md-auto">
+            {{ form_start(structureForm) }}
+                <fieldset>
+                    <legend>Information du gérant</legend>
+                    {{ form_row(structureForm.email) }}
+                    {{ form_row(structureForm.plainPassword) }}        
+                </fieldset>
+                <fieldset>
+                    <legend>Salle de sport</legend>
+                    {{ form_row(structureForm.address) }}
+                    {{ form_row(structureForm.city) }}
+                    {{ form_row(structureForm.zipCode) }}
+                    <div class="my-2">
+                        {{ form_row(structureForm.partnerId) }}
+                    </div>
+                </fieldset>
+                <button type="submit" class="btn btn-success my-3">Valider</button>
+        </div>
+        <div class="col md-auto">
+            <div class="form-check form-switch">
+                <label class="form-check-label" for="flexSwitchCheckDefault" ></label>
+                    {{ form_row(structureForm.sellDrinks) }}
+                    {{ form_row(structureForm.membersStat) }}
+                    {{ form_row(structureForm.paymentSchedules) }}
+                    {{ form_row(structureForm.employeePlanning) }}
+            </div>
+        </div>
+            {{ form_end(structureForm) }}
+    </div>
+</div>
+{% endblock %}

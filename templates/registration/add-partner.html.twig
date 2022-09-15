@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {{ form_start(partnerForm) }}
+            <fieldset>
+                <legend>Information du gérant</legend>
+                {{ form_row(partnerForm.email) }}
+                {{ form_row(partnerForm.plainPassword) }}        
+            </fieldset>
+            <fieldset>
+                <legend>Information sur la franchise</legend>
+                {{ form_row(partnerForm.name) }}
+                {{ form_row(partnerForm.picture) }}
+                {{ form_row(partnerForm.shortDescription) }}
+                {{ form_row(partnerForm.longDescription) }}
+                {{ form_row(partnerForm.url) }}
+                <div class="form-check form-switch">
+                    <label class="form-check-label" for="flexSwitchCheckDefault" ></label>
+                        {{ form_row(partnerForm.active) }}
+                </div>
+                
+
+            </fieldset>
+            <button type="submit" class="btn btn-success my-3">Valider</button>
+        {{ form_end(partnerForm) }}
+    </div>
+{% endblock %}
