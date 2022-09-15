@@ -1,3 +1,16 @@
+@font-face {
+    font-family: 'bahnschriftregular';
+    src: url('../fonts/bahnschrift_1-webfont.woff2') format('woff2'),
+         url('../fonts/bahnschrift_1-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+*{
+    font-family: 'bahnschriftregular ';
+}
+
 #activePartner:checked {
     border: none;
     background-color: #2ecc71;
@@ -15,4 +28,3 @@ input[type="checkbox"]:checked{
     background-color: #27ae60;
     border: none;
 }
-

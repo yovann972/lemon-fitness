@@ -2,15 +2,15 @@
 
 namespace App\Controller;
 
-use App\Entity\Partners;
+
 use App\Form\ResetPasswordType;
-use App\Repository\PartnersRepository;
 use App\Repository\UserRepository;
+use App\Repository\PartnersRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -21,6 +21,8 @@ class ResetPasswordController extends AbstractController
     )
     {}
     
+
+    #[IsGranted('ROLE_USER')]
     #[Route('/redefinir-mon-mot-de-passe', name:'app_reset_password')]
     public function reset(
         Request $request, 

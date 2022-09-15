@@ -2,19 +2,21 @@
 
 namespace App\Controller;
 
-use App\Entity\Permissions;
 use App\Entity\Structures;
+use App\Entity\Permissions;
 use App\Form\PermissionsType;
 use App\Repository\PartnersRepository;
-use App\Repository\PermissionsRepository;
 use App\Repository\StructuresRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\PermissionsRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PermissionsController extends AbstractController
 {
+    #[IsGranted('ROLE_USER')]
     /**
      *  Route for partner for change sellDrink permissions
      *
@@ -51,7 +53,7 @@ class PermissionsController extends AbstractController
         ],200);
     }
 
-
+    #[IsGranted('ROLE_USER')]
     /**
      * Route for partner for change memberStat permissions
      *
@@ -88,6 +90,7 @@ class PermissionsController extends AbstractController
         ],200);
     }
 
+    #[IsGranted('ROLE_USER')]
     /**
      * Route for partner for change payementSchedule permissions
      *
@@ -124,6 +127,7 @@ class PermissionsController extends AbstractController
         ],200);
     }    
 
+    #[IsGranted('ROLE_USER')]
     /**
      * Route for partner for change employeePlanning permissions
      *

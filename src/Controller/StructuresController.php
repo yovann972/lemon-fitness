@@ -5,11 +5,13 @@ namespace App\Controller;
 use App\Entity\Structures;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class StructuresController extends AbstractController
 {
+    #[IsGranted('ROLE_USER')]
     #[Route('/structures/{id<[0-9]+>}', name: 'app_structures')]
     #[ParamConverter(
         'structure',
@@ -20,6 +22,8 @@ class StructuresController extends AbstractController
         return $this->render('structures/index.html.twig',compact('structure'));
     }
     
+
+    #[IsGranted('ROLE_STRUCTURE')]
     #[Route('/mon-compte/structure/{id<[0-9]+>}', name:'app_structure_profile')]
     #[ParamConverter(
         'structure', 

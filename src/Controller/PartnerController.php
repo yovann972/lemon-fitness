@@ -5,13 +5,16 @@ namespace App\Controller;
 use App\Entity\Partners;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class PartnerController extends AbstractController
 {
+
+    #[IsGranted('ROLE_USER')]
     /**
      * Return partnerPage 
      *
@@ -28,7 +31,7 @@ class PartnerController extends AbstractController
         return $this->render('partner/index.html.twig',compact('partner'));
     }
 
-
+    #[IsGranted('ROLE_USER')]
     #[Route('/partenaire/{page?1}/{nbre?4}', name:'app_partner_list')]
     public function FunctionName(ManagerRegistry $doctrine, $page, $nbre): Response
     {
@@ -47,6 +50,7 @@ class PartnerController extends AbstractController
     }
 
 
+    #[IsGranted('ROLE_USER')]
     /**
      * Route for activate a Partner
      *
@@ -92,7 +96,8 @@ class PartnerController extends AbstractController
         ], 200);
     }
 
-
+ 
+    #[IsGranted('ROLE_USER')]
     /**
      * PartnerAccount
      *
